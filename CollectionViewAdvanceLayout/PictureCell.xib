@@ -9,15 +9,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PictureCell" customModule="CollectionViewAdvanceLayout" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PictureCell" id="gTV-IL-0wX" customClass="PictureCell" customModule="CollectionViewAdvanceLayout" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2F-Il-kYX">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sbj-7z-mB9">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.43685787671232879" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Sbj-7z-mB9" secondAttribute="bottom" id="3vA-sd-Cxh"/>
+                            <constraint firstAttribute="trailing" secondItem="Sbj-7z-mB9" secondAttribute="trailing" id="R7L-cc-J6Y"/>
+                            <constraint firstItem="Sbj-7z-mB9" firstAttribute="top" secondItem="Y2F-Il-kYX" secondAttribute="top" id="j9T-AM-rpf"/>
+                            <constraint firstItem="Sbj-7z-mB9" firstAttribute="leading" secondItem="Y2F-Il-kYX" secondAttribute="leading" id="rFf-S1-w59"/>
+                        </constraints>
+                    </view>
+                </subviews>
             </view>
             <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Y2F-Il-kYX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UXl-in-2y2"/>
+                <constraint firstItem="Y2F-Il-kYX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fO2-E8-p6Z"/>
+                <constraint firstAttribute="bottom" secondItem="Y2F-Il-kYX" secondAttribute="bottom" id="jV5-Jb-q61"/>
+                <constraint firstAttribute="trailing" secondItem="Y2F-Il-kYX" secondAttribute="trailing" id="u7N-Sx-PB8"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="titleLabel" destination="Sbj-7z-mB9" id="hj0-O8-van"/>
+            </connections>
             <point key="canvasLocation" x="132" y="154"/>
         </collectionViewCell>
     </objects>
