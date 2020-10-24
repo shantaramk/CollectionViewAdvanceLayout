@@ -6,11 +6,11 @@ why Compositional Layouts is here.
 
 # # As a feature
 
-1.Group small Layouts into groups
+1. Group small Layouts into groups
 
-2.Each Group of Layout constitutes a group of elements
+2. Each Group of Layout constitutes a group of elements
 
-3.Use in combination with Layouts smaller than subclasses
+3. Use in combination with Layouts smaller than subclasses
 
 And so on.
 
@@ -18,12 +18,12 @@ And so on.
 
 It is mainly composed of the following four elements.
 
-1.Item
+1. Item
 
-2.Group
+2. Group
 
-3.Section
+3. Section
 
-4.Layout
+4. Layout
 
 Item, Group, Section, Layout build a hierarchical structure.
