@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     func configureCollectionView() {
         collectionview.register(UINib(nibName: "PictureCell", bundle: nil), forCellWithReuseIdentifier: "PictureCell")
-        collectionview.collectionViewLayout = createTwoColumnLayout()
+        collectionview.collectionViewLayout = createDistinctSectionsLayout()
         collectionview.dataSource = self
         collectionview.reloadData()
     }
@@ -104,11 +104,56 @@ class ViewController: UIViewController {
         return layout
     }
 
+    //MARK:- Distinct Sections Layout
+    func createDistinctSectionsLayout() -> UICollectionViewLayout {
+
+        //Item Size
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension:  .fractionalHeight(1.0))
+        //item
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let spacing = CGFloat(10)
+
+        //group Size
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(100))
+        //group
+        //let gourp = NSCollectionLayoutGroup(layoutSize: groupSize, supplementaryItems: [NSCollectionLayoutSupplementaryItem])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+
+        group.interItemSpacing = .fixed(spacing)
+
+        //Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = spacing
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+
+        //Layout
+        let layout = UICollectionViewCompositionalLayout { (section, _) -> NSCollectionLayoutSection? in
+
+            if section == 0 {
+
+            }
+        }
+        return layout
+    }
+
+    func bannerLayout() {
+        
+    }
+
+
 }
 
 extension ViewController: UICollectionViewDataSource {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
