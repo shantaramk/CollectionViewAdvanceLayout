@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var collectionview: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,27 +133,109 @@ class ViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout { (section, _) -> NSCollectionLayoutSection? in
 
             if section == 0 {
-
+                return self.bannerLayout()
+            } else if section == 1 {
+                return self.horizonalItemLayout()
+             } else {
+                return self.listItemLayout()
             }
         }
         return layout
     }
 
-    func bannerLayout() {
-        
+    func bannerLayout() -> NSCollectionLayoutSection {
+        //Item Size
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension:  .fractionalHeight(1.0))
+        //item
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let spacing = CGFloat(0)
+
+        //group Size
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(200))
+        //group
+        //let gourp = NSCollectionLayoutGroup(layoutSize: groupSize, supplementaryItems: [NSCollectionLayoutSupplementaryItem])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+
+        group.interItemSpacing = .fixed(spacing)
+
+        //Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = spacing
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
+        section.orthogonalScrollingBehavior = .paging
+        return section
     }
 
+    func horizonalItemLayout() -> NSCollectionLayoutSection {
+        //Item Size
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(150),
+                                              heightDimension: .absolute(150))
+        //item
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
+        let spacing = CGFloat(10)
+
+        //group Size
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(150))
+        //group
+        //let gourp = NSCollectionLayoutGroup(layoutSize: groupSize, supplementaryItems: [NSCollectionLayoutSupplementaryItem])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
+
+        group.interItemSpacing = .fixed(spacing)
+
+        //Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = spacing
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10)
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+
+    func listItemLayout() -> NSCollectionLayoutSection {
+        //Item Size
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension:  .fractionalHeight(1.0))
+        //item
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        //group Size
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(100))
+        //group
+        //let gourp = NSCollectionLayoutGroup(layoutSize: groupSize, supplementaryItems: [NSCollectionLayoutSupplementaryItem])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitems: [item])
+        let spacing = CGFloat(2)
+
+        group.interItemSpacing = .fixed(spacing)
+
+        //Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = spacing
+
+        return section
+
+       }
 }
 
 extension ViewController: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if section == 0 {
+            return 4
+        } else if section == 1 {
+            return 8
+        } else {
+            return 15
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
